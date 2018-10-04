@@ -41,6 +41,6 @@ function shuffle(array) {
 
  allCards.forEach(function(card) {
    card.addEventListener('click', function(e) {
-     console.log(e);
+     card.classList.add('open','show');
    })
  });
