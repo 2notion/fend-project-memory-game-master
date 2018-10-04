@@ -38,9 +38,21 @@ function shuffle(array) {
  */
 
  let allCards = document.querySelectorAll('.card');
-
+ let flipCardCount = [];
  allCards.forEach(function(card) {
    card.addEventListener('click', function(e) {
-     card.classList.add('open','show');
+     flipCardCount.push(card);
+     // show card
+     if (flipCardCount.length<=2) {
+       card.classList.add('open','show');
+     } else {
+       // hidden
+       setTimeout(function(e) {
+         flipCardCount.forEach(function(card) {
+           card.classList.remove('open','show');
+         })
+         flipCardCount=[];
+       },100);
+     };
    })
  });
