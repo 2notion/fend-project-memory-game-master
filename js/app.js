@@ -38,10 +38,15 @@ function shuffle(array) {
  */
 
  let allCards = document.querySelectorAll('.card');
+ let scoreText = document.querySelector('.moves');
+ let scoreMove = 0;
  let flipCardCount = [];
  allCards.forEach(function(card) {
    card.addEventListener('click', function(e) {
+     // console.log(card.querySelector('i').classList);
      flipCardCount.push(card);
+     scoreMove++;
+     scoreText.innerHTML = scoreMove;
      // show card
      if (flipCardCount.length<=2) {
        card.classList.add('open','show');
