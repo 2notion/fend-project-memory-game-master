@@ -50,14 +50,14 @@ function shuffle(array) {
      // show card
      if (flipCardCount.length<=2) {
        card.classList.add('open','show');
-     } else {
-       // hidden
+     };
+     if (flipCardCount.length==2) {
        setTimeout(function(e) {
          flipCardCount.forEach(function(card) {
            card.classList.remove('open','show');
          })
          flipCardCount=[];
-       },100);
+       },500);
      };
    })
  });
