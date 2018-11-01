@@ -40,23 +40,39 @@ function shuffle(array) {
  let allCards = document.querySelectorAll('.card');
  let scoreText = document.querySelector('.moves');
  let scoreMove = 0;
- let flipCardCount = [];
+ let flipCards = [];
  allCards.forEach(function(card) {
    card.addEventListener('click', function(e) {
      // console.log(card.querySelector('i').classList);
-     flipCardCount.push(card);
-     scoreMove++;
-     scoreText.innerHTML = scoreMove;
+     flipCards.push(card);
+
      // show card
-     if (flipCardCount.length<=2) {
-       card.classList.add('open','show');
-     };
-     if (flipCardCount.length==2) {
+     if (flipCards.length<=2) {
+         if (card.classList.item(1)!='open'
+              && card.classList.item(2) != 'show') {
+           card.classList.add('open','show');
+           scoreMove++;
+           scoreText.innerHTML = scoreMove;
+        };
+      };
+     if (flipCards.length==2) {
        setTimeout(function(e) {
-         flipCardCount.forEach(function(card) {
-           card.classList.remove('open','show');
-         })
-         flipCardCount=[];
+         let innerCard1 = flipCards[0].querySelector('.fa');
+         let innerCard2 = flipCards[1].querySelector('.fa');
+
+         if (innerCard1.classList.item(1) != innerCard2.classList.item(1)) {
+                console.log(innerCard1.classList.item(1));
+                console.log(innerCard2.classList.item(1));
+              flipCards[0].classList.remove('open','show');
+              flipCards[1].classList.remove('open','show');
+         }
+         // console.log(innerCard1.classList.item(1));
+         // flipCardCount.forEach(function(card) {
+           // let innerCard = card.querySelector('.fa');
+            // console.log(innerCard.classList.item(1));
+           // card.classList.remove('open','show');
+         // })
+         flipCards=[];
        },500);
      };
    })
