@@ -21,7 +21,6 @@ function shuffle(array) {
         array[currentIndex] = array[randomIndex];
         array[randomIndex] = temporaryValue;
     }
-
     return array;
 }
 
@@ -60,19 +59,22 @@ function shuffle(array) {
          let innerCard1 = flipCards[0].querySelector('.fa');
          let innerCard2 = flipCards[1].querySelector('.fa');
 
-         if (innerCard1.classList.item(1) != innerCard2.classList.item(1)) {
+         if (innerCard1.classList.item(1) == innerCard2.classList.item(1)) {
                 console.log(innerCard1.classList.item(1));
                 console.log(innerCard2.classList.item(1));
-              flipCards[0].classList.remove('open','show');
-              flipCards[1].classList.remove('open','show');
+                flipCards[0].classList.add('match');
+                flipCards[1].classList.add('match');
+
          }
-         // console.log(innerCard1.classList.item(1));
+         flipCards[0].classList.remove('open','show');
+         flipCards[1].classList.remove('open','show');
+         flipCards=[];
          // flipCardCount.forEach(function(card) {
            // let innerCard = card.querySelector('.fa');
             // console.log(innerCard.classList.item(1));
            // card.classList.remove('open','show');
          // })
-         flipCards=[];
+
        },500);
      };
    })
