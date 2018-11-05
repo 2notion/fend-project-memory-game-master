@@ -24,7 +24,6 @@ function shuffle(array) {
     return array;
 }
 
-
 /*
  * set up the event listener for a card. If a card is clicked:
  *  - display the card's symbol (put this functionality in another function that you call from this one)
@@ -40,7 +39,8 @@ init();
 
 let allCards = document.querySelectorAll('.card');
 let scoreText = document.querySelector('.moves');
-let restartDeck = document.querySelector('.restart')
+let restartDeck = document.querySelector('.restart');
+let starsScore = document.querySelector('.stars');
 let scoreMove = 0;
 let flipCards = [];
 
@@ -77,6 +77,8 @@ restartDeck.addEventListener('click', function(e) {
  scoreText = document.querySelector('.moves');
  doMain();
  console.log('restart deck');
+ starsScore.querySelectorAll('.fa')[2].classList.replace('fa-star-o','fa-star');
+ starsScore.querySelectorAll('.fa')[1].classList.replace('fa-star-o','fa-star');
 });
 
 function doMain() {
@@ -93,6 +95,14 @@ function doMain() {
             card.classList.add('open','show');
             scoreMove++;
             scoreText.innerHTML = scoreMove;
+            // Start Rating
+            if (scoreMove==20) {
+              // 2 stars
+              starsScore.querySelectorAll('.fa')[2].classList.replace('fa-star','fa-star-o');
+            } else if (scoreMove ==40) {
+              // 1 star
+              starsScore.querySelectorAll('.fa')[1].classList.replace('fa-star','fa-star-o');
+            }
          }
        }
        // open cards equals two
