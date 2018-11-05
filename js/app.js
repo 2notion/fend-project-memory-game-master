@@ -36,46 +36,81 @@ function shuffle(array) {
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
 
- let allCards = document.querySelectorAll('.card');
- let scoreText = document.querySelector('.moves');
- let scoreMove = 0;
- let flipCards = [];
- allCards.forEach(function(card) {
-   card.addEventListener('click', function(e) {
-     // console.log(card.querySelector('i').classList);
-     flipCards.push(card);
+init();
 
-     // show card
-     if (flipCards.length<=2) {
-         if (card.classList.item(1)!='open'
-              && card.classList.item(2) != 'show') {
-           card.classList.add('open','show');
-           scoreMove++;
-           scoreText.innerHTML = scoreMove;
-        };
-      };
-     if (flipCards.length==2) {
-       setTimeout(function(e) {
-         let innerCard1 = flipCards[0].querySelector('.fa');
-         let innerCard2 = flipCards[1].querySelector('.fa');
+let allCards = document.querySelectorAll('.card');
+let scoreText = document.querySelector('.moves');
+let restartDeck = document.querySelector('.restart')
+let scoreMove = 0;
+let flipCards = [];
 
-         if (innerCard1.classList.item(1) == innerCard2.classList.item(1)) {
-                console.log(innerCard1.classList.item(1));
-                console.log(innerCard2.classList.item(1));
-                flipCards[0].classList.add('match');
-                flipCards[1].classList.add('match');
+doMain();
 
+function init () {
+  let deckImages = [
+    'fa-diamond','fa-diamond',
+    'fa-paper-plane-o', 'fa-paper-plane-o',
+    'fa-anchor', 'fa-anchor',
+    'fa-bolt', 'fa-bolt',
+    'fa-cube', 'fa-cube',
+    'fa-leaf', 'fa-leaf',
+    'fa-bicycle', 'fa-bicycle',
+    'fa-bomb', 'fa-bomb'
+  ];
+
+  let deck = document.querySelector('.deck');
+  let deckHTML = '';
+
+  shuffle(deckImages).forEach(function(card) {
+    deckHTML += '<li class="card"><i class="fa '+ card+ '"></i></li>';
+  });
+  deck.innerHTML= deckHTML
+
+  document.querySelector('.moves').innerHTML = 0;
+}
+
+restartDeck.addEventListener('click', function(e) {
+ init();
+ scoreMove = 0;
+ flipCards = [];
+ allCards = document.querySelectorAll('.card');
+ scoreText = document.querySelector('.moves');
+ doMain();
+ console.log('restart deck');
+});
+
+function doMain() {
+  allCards.forEach(function(card) {
+    card.addEventListener('click', function(e) {
+      flipCards.push(card);
+      console.log("hello");
+
+      // show card
+      if (flipCards.length<=2) {
+
+          if (card.classList.item(1)!='open'
+               && card.classList.item(2) != 'show') {
+            card.classList.add('open','show');
+            scoreMove++;
+            scoreText.innerHTML = scoreMove;
          }
-         flipCards[0].classList.remove('open','show');
-         flipCards[1].classList.remove('open','show');
-         flipCards=[];
-         // flipCardCount.forEach(function(card) {
-           // let innerCard = card.querySelector('.fa');
-            // console.log(innerCard.classList.item(1));
-           // card.classList.remove('open','show');
-         // })
+       }
+       // open cards equals two
+      if (flipCards.length==2) {
+        setTimeout(function(e) {
+          let innerCard1 = flipCards[0].querySelector('.fa');
+          let innerCard2 = flipCards[1].querySelector('.fa');
 
-       },500);
-     };
-   })
- });
+          if (innerCard1.classList.item(1) == innerCard2.classList.item(1)) {
+                 flipCards[0].classList.add('match');
+                 flipCards[1].classList.add('match');
+
+          }
+          flipCards[0].classList.remove('open','show');
+          flipCards[1].classList.remove('open','show');
+          flipCards=[];
+        },500);
+      }
+    });
+  });
+}
