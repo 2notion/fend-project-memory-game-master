@@ -39,9 +39,10 @@ init();
 
 let allCards = document.querySelectorAll('.card');
 let scoreText = document.querySelector('.moves');
-let restartDeck = document.querySelector('.restart');
+let restart = document.querySelector('.restart');
 let starsScore = document.querySelector('.stars');
 let scoreMove = 0;
+let matched=0;
 let flipCards = [];
 
 doMain();
@@ -69,17 +70,23 @@ function init () {
   document.querySelector('.moves').innerHTML = 0;
 }
 
-restartDeck.addEventListener('click', function(e) {
- init();
- scoreMove = 0;
- flipCards = [];
- allCards = document.querySelectorAll('.card');
- scoreText = document.querySelector('.moves');
- doMain();
- console.log('restart deck');
- starsScore.querySelectorAll('.fa')[2].classList.replace('fa-star-o','fa-star');
- starsScore.querySelectorAll('.fa')[1].classList.replace('fa-star-o','fa-star');
+restart.addEventListener('click', function(e) {
+  restartDeck();
 });
+
+function restartDeck() {
+  init();
+  scoreMove = 0;
+  flipCards = [];
+  matched = 0;
+  allCards = document.querySelectorAll('.card');
+  scoreText = document.querySelector('.moves');
+  doMain();
+  console.log('restart deck');
+  starsScore.querySelectorAll('.fa')[2].classList.replace('fa-star-o','fa-star');
+  starsScore.querySelectorAll('.fa')[1].classList.replace('fa-star-o','fa-star');
+
+}
 
 function doMain() {
   allCards.forEach(function(card) {
@@ -99,7 +106,7 @@ function doMain() {
             if (scoreMove==20) {
               // 2 stars
               starsScore.querySelectorAll('.fa')[2].classList.replace('fa-star','fa-star-o');
-            } else if (scoreMove ==40) {
+            } else if (scoreMove==40) {
               // 1 star
               starsScore.querySelectorAll('.fa')[1].classList.replace('fa-star','fa-star-o');
             }
@@ -114,7 +121,10 @@ function doMain() {
           if (innerCard1.classList.item(1) == innerCard2.classList.item(1)) {
                  flipCards[0].classList.add('match');
                  flipCards[1].classList.add('match');
-
+                 matched++;
+                 if (matched == 8) {
+                    congrat();
+                 }
           }
           flipCards[0].classList.remove('open','show');
           flipCards[1].classList.remove('open','show');
@@ -123,4 +133,19 @@ function doMain() {
       }
     });
   });
+}
+
+function congrat() {
+  document.getElementById('container').style.display = "none";
+  document.getElementById('congrat').style.display = "inline";
+  document.querySelector('.score').innerHTML = scoreMove;
+  document.querySelector('.star').innerHTML =
+    scoreMove <20 ? 3: ((scoreMove >=20 && scoreMove <40) ? 2:1);
+  let restartButton = document.querySelector('.restart-button');
+  restartButton.addEventListener('click', function(e) {
+    document.getElementById('container').style.display = "flex";
+    document.getElementById('congrat').style.display = "none";
+    restartDeck();
+  });
+
 }
