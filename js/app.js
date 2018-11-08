@@ -125,7 +125,7 @@ function doMain() {
          }
        }
        // open cards equals two
-      if (flipCards.length==2) {
+      if (flipCards.length==2 && !processing) {
         processing = true;
         setTimeout(function(e) {
           let innerCard1 = flipCards[0].querySelector('.fa');
