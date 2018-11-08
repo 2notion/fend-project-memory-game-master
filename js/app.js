@@ -43,7 +43,7 @@ let restart = document.querySelector('.restart');
 let starsScore = document.querySelector('.stars');
 let gameTimer = 0;
 let scoreMove = 0;
-let matched=7;
+let matched=0;
 let flipCards = [];
 
 doMain();
@@ -98,14 +98,18 @@ function restartDeck() {
 function doMain() {
   allCards.forEach(function(card) {
     card.addEventListener('click', function(e) {
-      flipCards.push(card);
-      console.log("hello");
+      // if (card.classList.item(1)!='open'
+      //       || card.classList.item(2)!='show'
+      //       || card.classList.itme(1)!='matched') {
+      //         flipCards.push(card);
+      // }
 
       // show card
       if (flipCards.length<=2) {
-
           if (card.classList.item(1)!='open'
-               && card.classList.item(2) != 'show') {
+               && card.classList.item(2) != 'show'
+                && card.classList.item(1) != 'match') {
+            flipCards.push(card);
             card.classList.add('open','show');
             scoreMove++;
             scoreText.innerHTML = scoreMove;
@@ -145,7 +149,7 @@ function doMain() {
 function congrat() {
   let totalSeconds = gameTimer;
   document.getElementById('container').style.display = "none";
-  document.getElementById('congrat').style.display = "inline";
+  document.getElementById('congrat').style.display = "flex";
   document.querySelector('.score').innerHTML = scoreMove;
   document.querySelector('.star').innerHTML =
     scoreMove <20 ? 3: ((scoreMove >=20 && scoreMove <40) ? 2:1);
