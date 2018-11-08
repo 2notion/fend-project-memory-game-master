@@ -22,8 +22,6 @@ body {
 }
 
 .container {
-    /* display: flex; */
-
     justify-content: center;
     align-items: center;
     flex-direction: column;
@@ -31,7 +29,6 @@ body {
 
 #container {
   display: flex;
-  /* display: none; */
 }
 
 h1 {
@@ -131,7 +128,6 @@ h1 {
 
  #congrat {
    display: none;
-   /* display: flex; */
  }
 
  .restart-button {
