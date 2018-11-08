@@ -96,6 +96,7 @@ function restartDeck() {
 }
 
 function doMain() {
+  let processing = false;
   allCards.forEach(function(card) {
     card.addEventListener('click', function(e) {
       // if (card.classList.item(1)!='open'
@@ -105,7 +106,7 @@ function doMain() {
       // }
 
       // show card
-      if (flipCards.length<=2) {
+      if (flipCards.length<=2 && !processing) {
           if (card.classList.item(1)!='open'
                && card.classList.item(2) != 'show'
                 && card.classList.item(1) != 'match') {
@@ -125,6 +126,7 @@ function doMain() {
        }
        // open cards equals two
       if (flipCards.length==2) {
+        processing = true;
         setTimeout(function(e) {
           let innerCard1 = flipCards[0].querySelector('.fa');
           let innerCard2 = flipCards[1].querySelector('.fa');
@@ -140,6 +142,7 @@ function doMain() {
           flipCards[0].classList.remove('open','show');
           flipCards[1].classList.remove('open','show');
           flipCards=[];
+          processing = false;
         },500);
       }
     });
