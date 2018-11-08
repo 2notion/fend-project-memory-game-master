@@ -3,18 +3,15 @@
 ## Table of Contents
 
 * [Instructions](#instructions)
-* [Contributing](#contributing)
+* [Files](#files)
 
 ## Instructions
+There are 16 blocks of image and you need to match unique 2 identical images. Total 8 pairs of images are provided and you need to find all the matches in order to complete the game. Count of moves, star rating and timer are tracked. 
 
-The starter project has some HTML and CSS styling to display a static version of the Memory Game project. You'll need to convert this project from a static project to an interactive one. This will require modifying the HTML and CSS files, but primarily the JavaScript file.
+Good Luck
 
-To get started, open `js/app.js` and start building out the app's functionality
+## Files
 
-For specific, detailed instructions, look at the project instructions in the [Udacity Classroom](https://classroom.udacity.com/me).
-
-## Contributing
-
-This repository is the starter code for _all_ Udacity students. Therefore, we most likely will not accept pull requests.
-
-For details, check out [CONTRIBUTING.md](CONTRIBUTING.md).
+app.css
+app.cs
+index.html
