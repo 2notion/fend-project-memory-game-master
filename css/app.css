@@ -31,6 +31,7 @@ body {
 
 #container {
   display: flex;
+  /* display: none; */
 }
 
 h1 {
@@ -124,9 +125,25 @@ h1 {
  */
 
  .congrat{
-
+   justify-content: center;
+   align-items: center;
+   flex-direction: column;
  }
 
  #congrat {
    display: none;
+   /* display: flex; */
  }
+
+ .restart-button {
+   font-size: 16px;
+    background-color: white;
+    color: black;
+    border: 2px solid #4CAF50;
+    transition-duration: 0.4s;
+ }
+
+ .restart-button:hover {
+    background-color: #4CAF50;
+    color: white;
+}
