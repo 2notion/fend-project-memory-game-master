@@ -41,11 +41,17 @@ let allCards = document.querySelectorAll('.card');
 let scoreText = document.querySelector('.moves');
 let restart = document.querySelector('.restart');
 let starsScore = document.querySelector('.stars');
+let gameTimer = 0;
 let scoreMove = 0;
-let matched=0;
+let matched=7;
 let flipCards = [];
 
 doMain();
+
+setInterval(function(e) {
+  gameTimer++;
+  document.querySelector('.timer-second').innerHTML = gameTimer;
+},1000);
 
 function init () {
   let deckImages = [
@@ -79,6 +85,7 @@ function restartDeck() {
   scoreMove = 0;
   flipCards = [];
   matched = 0;
+  gameTimer = 0;
   allCards = document.querySelectorAll('.card');
   scoreText = document.querySelector('.moves');
   doMain();
@@ -136,11 +143,13 @@ function doMain() {
 }
 
 function congrat() {
+  let totalSeconds = gameTimer;
   document.getElementById('container').style.display = "none";
   document.getElementById('congrat').style.display = "inline";
   document.querySelector('.score').innerHTML = scoreMove;
   document.querySelector('.star').innerHTML =
     scoreMove <20 ? 3: ((scoreMove >=20 && scoreMove <40) ? 2:1);
+  document.querySelector('.game-time').innerHTML = totalSeconds;
   let restartButton = document.querySelector('.restart-button');
   restartButton.addEventListener('click', function(e) {
     document.getElementById('container').style.display = "flex";
